@@ -83,4 +83,4 @@ These Python bindings are available on [PyPI](https://pypi.python.org/pypi/hashp
     ('e3c4a05f', 'original_datadata_to_add')
 
 ### Python 3 note
-hashpumpy supports Python 3. Different from the Python 2 version, the returned tuple from `hashpumpy.hashpump` is a bytes-like object instead of a string.
+hashpumpy supports Python 3. Different from the Python 2 version, the second value (the new message) in the returned tuple from `hashpumpy.hashpump` is a bytes-like object instead of a string.

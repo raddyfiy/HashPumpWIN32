@@ -81,3 +81,6 @@ These Python bindings are available on [PyPI](https://pypi.python.org/pypi/hashp
             A tuple containing the new hex digest and the new message.
     >>> hashpumpy.hashpump('ffffffff', 'original_data', 'data_to_add', len('KEYKEYKEY'))
     ('e3c4a05f', 'original_datadata_to_add')
+
+### Python 3 note
+hashpumpy supports Python 3. Different from the Python 2 version, the returned tuple from `hashpumpy.hashpump` is a bytes-like object instead of a string.

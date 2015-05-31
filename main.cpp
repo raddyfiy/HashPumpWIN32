@@ -61,6 +61,9 @@ void TestExtender(Extender * sex)
 			delete vmessage;
 			delete additionalData;
 			delete newData;
+			delete firstSig;
+			delete secondSig;
+			delete sex;
 			return;
 		}
 		else
@@ -70,6 +73,9 @@ void TestExtender(Extender * sex)
 			delete vmessage;
 			delete additionalData;
 			delete newData;
+			delete firstSig;
+			delete secondSig;
+			delete sex;
 			return;
 		}
 	}
@@ -79,8 +85,11 @@ void TestExtender(Extender * sex)
 		delete vkey;
 		delete vmessage;
 		delete additionalData;
+		delete firstSig;
+		delete sex;
 		return;
 	}
+	delete sex;
 }
 
 Extender * GetExtenderForHash(string sig)
@@ -118,7 +127,7 @@ void PrintHelp()
 	cout << "     -d --data          The data from the known message." << endl;
 	cout << "     -a --additional    The information you would like to add to the known message." << endl;
 	cout << "     -k --keylength     The length in bytes of the key being used to sign the original message with." << endl;
-	cout << "     Version 1.1.0 with CRC32, MD5, SHA1, SHA256 and SHA512 support." << endl;
+	cout << "     Version 1.2.0 with CRC32, MD5, SHA1, SHA256 and SHA512 support." << endl;
 	cout << "     <Developed by bwall(@botnet_hunter)>" << endl;
 }
 
@@ -286,6 +295,8 @@ int main(int argc, char ** argv)
 		}
 	}
 	delete secondMessage;
+    delete [] secondSig;
+    delete sex;
 	cout << endl;
 	return 0;
 }

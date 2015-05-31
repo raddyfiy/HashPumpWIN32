@@ -6,7 +6,7 @@ module1 = Extension('hashpumpy',
                     libraries = ['crypto'])
 
 setup (name = 'hashpumpy',
-       version = '1.0',
+       version = '1.1',
        author      = 'Zach Riggle (Python binding), Brian Wallace (HashPump)',
        description = 'Python bindings for HashPump',
        data_files  = glob('*.h'),

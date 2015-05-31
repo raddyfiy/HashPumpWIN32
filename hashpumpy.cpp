@@ -110,6 +110,7 @@ hashpump(PyObject *self, PyObject *args)
     {
         ss << setw(2) << (unsigned) new_hash[i];
     }
+    delete new_hash;
 
     new_digest = ss.str();
 

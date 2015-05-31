@@ -16,7 +16,7 @@ HashPump [-h help] [-t test] [-s signature] [-d data] [-a additional] [-k keylen
     -d --data          The data from the known message.
     -a --additional    The information you would like to add to the known message.
     -k --keylength     The length in bytes of the key being used to sign the original message with.
-    Version 1.1.0 with CRC32, MD5, SHA1, SHA256 and SHA512 support.
+    Version 1.2.0 with CRC32, MD5, SHA1, SHA256 and SHA512 support.
     <Developed by bwall(@botnet_hunter)>
 ```
 

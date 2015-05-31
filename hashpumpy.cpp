@@ -3,6 +3,21 @@
 #include <iomanip>
 #include "Extender.h"
 
+#define MODULE_NAME "hashpumpy"
+
+/* Definitions for Python2/3 compatibility */
+#if PY_MAJOR_VERSION >= 3
+#   define INITERROR return NULL
+#   define INITOK(m) return m
+#   define PyInit_Signature(name) PyInit_##name
+#   define BYTES_FORMAT "y#"
+#else
+#   define INITERROR return
+#   define INITOK(m) return
+#   define PyInit_Signature(name) init##name
+#   define BYTES_FORMAT "s#"
+#endif
+
 typedef unsigned char BYTE;
 
 vector<BYTE> StringToVector(BYTE * str);
@@ -122,7 +137,7 @@ hashpump(PyObject *self, PyObject *args)
     //
     // Return a tuple of (str, str)
     //
-    return Py_BuildValue("s#s#",
+    return Py_BuildValue("s#" BYTES_FORMAT,
                          new_digest.c_str(), new_digest.size(),
                          new_message.c_str(), new_message.size());
 }
@@ -145,17 +160,37 @@ static PyMethodDef HashpumpMethods[] = {
 };
 
 
+#if PY_MAJOR_VERSION >= 3
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    MODULE_NAME,
+    NULL,
+    -1,
+    HashpumpMethods,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+};
+#endif
+
 PyMODINIT_FUNC
-inithashpumpy(void)
+PyInit_Signature(hashpumpy) (void)
 {
     PyObject *m;
 
-    m = Py_InitModule("hashpumpy", HashpumpMethods);
+#if PY_MAJOR_VERSION >= 3
+    m = PyModule_Create(&moduledef);
+#else
+    m = Py_InitModule(MODULE_NAME, HashpumpMethods);
+#endif
     if (m == NULL)
-        return;
+        INITERROR;
 
     HashpumpError = PyErr_NewException("hashpumpy.error", NULL, NULL);
     Py_INCREF(HashpumpError);
     PyModule_AddObject(m, "error", HashpumpError);
+
+    INITOK(m);
 }
 }

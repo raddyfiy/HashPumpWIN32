@@ -33,6 +33,7 @@ count=10&lat=37.351&user_id=1&long=-119.827&waffle=eggo\x80\x00\x00\x00\x00\x00\
 ```bash
 $ git clone https://github.com/bwall/HashPump.git
 $ apt-get install g++ libssl-dev
+$ cd HashPump
 $ make
 $ make install
 ```

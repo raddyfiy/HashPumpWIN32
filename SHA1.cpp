@@ -59,10 +59,12 @@ vector<unsigned char> * SHA1ex::GenerateStretchedData(vector<unsigned char> orig
 	int tailLength = ret->size() + keylength;
 	tailLength *= 8;
 	ret->push_back(0x80);
-	while((ret->size() + keylength + 4) % 64 != 0)
+	while((ret->size() + keylength + 8) % 64 != 0)
 	{
 		ret->push_back(0x00);
 	}
+	for (int i = 0; i < 4; ++i)
+		ret->push_back(0x00);
 	ret->push_back((tailLength >> 24) & 0xFF);
 	ret->push_back((tailLength >> 16) & 0xFF);
 	ret->push_back((tailLength >> 8) & 0xFF);

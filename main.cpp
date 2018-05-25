@@ -1,5 +1,11 @@
+#ifdef WIN32
+#include "unistd.h"
+#include "getopt.h"
+#else
 #include <unistd.h>
 #include <getopt.h>
+#endif
+
 #include <openssl/sha.h>
 #include "SHA1.h"
 #include "MD5ex.h"
